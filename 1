@@ -321,7 +321,7 @@ return 0;
 SCAN
 
 #include <stdio.h>
-main()
+void main()
 {
 int t[20], d[20], h, i, j, n, temp, k, atr[20], tot, p, sum = 0;
 
@@ -349,7 +349,7 @@ for (i = 0; i < n + 2; i++)
 for (i = 0; i < n + 2; i++)
     if (t[i] == h)
         j = i;
-k = i;
+k = j;
 p = 0;
 while (t[j] != 0)
 {
