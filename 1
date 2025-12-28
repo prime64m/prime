@@ -3,32 +3,45 @@
 
 #include <unistd.h>
 
-int main() {
+int main()
+{
     int nread;
     char buff[20];
 
-    nread = read(0, buff, 10);   // read from keyboard
-    write(1, buff, nread);      // write to screen
+    nread = read(0, buff, 10);  
+    write(1, buff, nread);      
 
     return 0;
 }
 
 
+Compile & Run
+
+cc program1.c
+./a.out
+
+
+
 ✅ PROGRAM 2
 Print 10 characters starting from 10th character using lseek()
 
-
 #include <unistd.h>
 #include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <stdio.h>
 
-int main() {
-    int fd;
+int main()
+{
+    int f, f1;
     char buff[10];
 
-    fd = open("seeking", O_RDWR);
-    lseek(fd, 10, SEEK_SET);
-    read(fd, buff, 10);
+    f = open("seeking", O_RDWR);
+
+    f1 = lseek(f, 10, SEEK_SET);
+    printf("Pointer is at %d position\n", f1);
+
+    read(f, buff, 10);
     write(1, buff, 10);
 
     return 0;
@@ -44,40 +57,56 @@ IPC using Shared Memory
 Writer Process
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include <sys/shm.h>
 #include <string.h>
-#include <unistd.h>
 
-int main() {
+int main()
+{
     void *shared_memory;
     char buff[100];
     int shmid;
 
     shmid = shmget((key_t)2345, 1024, 0666 | IPC_CREAT);
+    printf("Key of shared memory is %d\n", shmid);
+
     shared_memory = shmat(shmid, NULL, 0);
+    printf("Process attached at %p\n", shared_memory);
 
+    printf("Enter some data to write to shared memory\n");
     read(0, buff, 100);
-    strcpy(shared_memory, buff);
 
-    printf("You wrote: %s\n", (char *)shared_memory);
+    strcpy(shared_memory, buff);
+    printf("You wrote : %s\n", (char *)shared_memory);
+
     return 0;
 }
+
 
 
 Reader Process
 
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include <sys/shm.h>
 
-int main() {
+int main()
+{
     void *shared_memory;
     int shmid;
 
     shmid = shmget((key_t)2345, 1024, 0666);
-    shared_memory = shmat(shmid, NULL, 0);
+    printf("Key of shared memory is %d\n", shmid);
 
-    printf("Data read: %s\n", (char *)shared_memory);
+    shared_memory = shmat(shmid, NULL, 0);
+    printf("Process attached at %p\n", shared_memory);
+
+    printf("Data read from shared memory is : %s\n",
+           (char *)shared_memory);
+
     return 0;
 }
 
