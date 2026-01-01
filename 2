@@ -1,0 +1,354 @@
+1. Simulate a topology with 2 LAN’s each having two devices connected to switches.
+Switches are connected to a common Router. Observe the packet flow.
+
+
+Step 1: Click on PC0 → Desktop → IP Config →
+IPV4 Address: 10.1.1.1
+Subnet Mask: 255.0.0.0
+
+Step 2: Click on PC1 → Desktop → IP Config →
+IPV4 Address: 10.1.1.2
+Subnet Mask: 255.0.0.0
+
+Step 3: Click on PC2 → Desktop → IP Config →
+IPV4 Address: 192.168.1.1
+Subnet Mask: 255.255.255.0
+
+Step 4: Click on PC3 → Desktop → IP Config →
+IPV4 Address: 192.168.1.2
+Subnet Mask: 255.255.255.0
+Config done with PC
+
+Step 5: Click on Router → Config → Interface → Fast Ethernet 0/0
+IP Address: 10.1.1.3
+Subnet Mask: 255.0.0.0
+Enable Port Status
+Click on → Fast Ethernet 0/1
+IP address: 192.168.1.3
+Subnet Mask: 255.255.0.4
+Enable Port Status
+
+Step 6: Click on PC0 → IP Configuration → Default Gateway → 10.1.1.3
+Click on PC1 → IP Configuration → Default Gateway →10.1.1.3
+Click on PC2 → IP Configuration → Default Gateway → 192.168.1.3
+Click on PC3 → IP Configuration → Default Gateway → 192.168.1.3
+Simulation: Select packets and place on PC0 and PC2
+Auto capture
+Successful
+
+
+
+
+
+2. Construct simple LAN using 3 nodes and understand the working of Address
+Resolution Protocol (ARP)
+
+
+
+
+Step 1: Click on PC0 → Desktop → IP Config →
+IP Address: 192.168.1.1
+Subnet Mask: 255.255.255.0
+
+Step 2: Click on PC1 → Desktop → IP Config →
+IP Address: 192.168.1.2
+Subnet Mask: 255.255.255.0
+
+Step 3: Click on PC2 → Desktop → IP Config →
+IP Address: 192.168.1.3
+Subnet Mask: 255.255.255.0
+
+Step 4: Click on Server → Desktop → IP Config →
+IP Address: 192.168.1.4
+Subnet Mask: 255.255.255.0
+Click on PC → Right click → Select ARP → ARP table for PC0
+Simulation: Select packets and place on PC0 and PC2
+Auto capture
+Successful
+
+Step 5: Click on inspect button ( )
+
+
+
+Click on PC → Right click → Select ARP → ARP table for PC0
+Simulation: Select packets and place on PC0 and PC2
+Auto capture
+Successful
+
+
+
+
+3. Perform the experiment to understand the Dynamic IP Address Allocation process.
+Observe the routing table at the end of simulation.
+
+
+
+Step 1: Select a Server, a Switch, 2 PC’s and 2 Laptops
+
+Step 2: Give the connections
+
+Step 3: Click on Server → In Config select DHCP
+Pool Name: Server pool (by default)
+Default Gateway : 10.0.0.1
+DNS Server: 0.0.0.0
+Start IP address: 10 0 0 0
+Subnet Mask : 255 0 0 0
+Maximum number of users : 50
+Save
+
+Step 4: Click on Server → Config → Fast Ethernet → Select IP Config as static and enter the
+IP Address and Subnet Mask manually (10.0.0.1) → On port status
+
+Step 5: Select PC0 →Desktop →IP Config →DHCP
+Requesting IP Address → DHCP Request
+Successful
+
+Do the same for Laptop0, PC1 and Laptop1
+[IP address and subnet Mask of all changes automatically]
+Simulation: Go to simulation mode
+Select a packet and place on PC0 and Laptop1
+Auto capture
+Successful
+
+
+
+
+4. Construct a simple LAN by configuring static routing and observe the routing table
+at the beginning and at the end of simulation
+
+
+Step 1: Select 2 Routers, 2 switches and 4 PC’s
+
+Step 2: Give the connections
+For Router 0 to Router 1, select the 4th connectivity [---]
+While placing the connection, select the fast ethernet 0/1
+
+Step 3: Click on PC0 → Desktop → IP Config → Static →
+IP address: 192.168.1.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.1.4
+Click on PC1 → Desktop → IP Config → Static →
+IP address: 192.168.1.3
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.1.4
+Click on PC2 → Desktop → IP Config → Static →
+IP address: 192.168.2.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.16
+
+
+Click on PC3 → Desktop → IP Config → Static →
+IP address: 192.168.2.3
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.2.4
+
+
+Step 4: Click on Router0 → Config → Fast Ethernet 0/0 →
+IP address: 192.168.1.4
+Subnet Mask: 255.255.255.0
+Turn on the port status
+
+
+Step 5: Click on Router0 → Config → Fast Ethernet 0/1 →
+IP address: 192.168.3.2
+Subnet Mask: 255.255.255.0
+Turn on the port status
+
+
+Step 6: Click on Router0 → Config → Fast Ethernet 0/0 →
+IP address: 192.168.2.4
+Subnet Mask: 255.255.255.0
+Turn on the port status
+
+
+Step 7: Click on Router1 → Config → Fast Ethernet 0/0 →
+IP address: 192.168.3.3
+Subnet Mask: 255.255.255.0
+Turn on the port status
+
+
+Step 8: Click on Router1 → Config → Static
+Network: 192.168.1.0
+Mask: 255.255.255.0
+Next HOP: 192.168.3.2.
+Click on add
+Simulation: Go to simulation mode
+Select the packets and place them on PC0 and PC1
+Auto capture
+Successful
+
+
+
+5. Simulate a topology where 3 routers are fully connected and each router connected
+to end devices. Observe the flow of ICMP packets from 1 network to other using RIP
+protocol.
+
+
+
+Step 1: Select 3 Routers (2811)
+
+Step 2: Click on Router0 → Config → Physical →Select WIC1T or WIC2T
+Disable the green button (Right side)
+Drag and drop the WIC 2T 2 times into the box
+Enable the green button
+Repeat the same steps for the other Routers
+
+Step 3: Select 3 PC’s and give the connections to Routers and PC’s
+
+Step 4: Click on PC0 → Desktop → IP Config → Static
+IP address: 192.168.1.1
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.1.2
+
+Step 5: Click on PC1 → Desktop → IP Config → Static
+
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.2.2
+
+
+Step 6: Click on PC2 → Desktop → IP Config → Static
+IP address: 192.168.3.1
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.3.2
+
+
+Step 7: [ Based on the respective fast ethernet and serial numbers in your system, provide the
+IP’s ]
+Click on Router 0 → Config → Interface
+Fast Ethernet 0/0:
+IP Address: 192.168.1.2
+Subnet Mask: 255.255.255.0
+Turn on Port status
+Serial 0/3/1:
+IP Address: 10.10.10.2
+Subnet Mask: 255.0.0.0
+Turn on Port status
+Serial 0/3/0:
+IP Address: 20.20.20.1
+Subnet Mask: 255.0.0.0
+Turn on Port status
+Repeat the same process for Router1 and Router2 (For IP’s, look at the diagram)
+Make sure all the red dots on the connection turns green
+Step 6: Click on the Router0 → Config → RIP
+Network: 192.168.1.2 → Add
+10.10.10.2 → Add
+20.20.20.1 → Add
+(Add the respective IP’s of the Router)
+Repeat the same steps for Router1 and Router2
+IP address: 192.168.2.1
+Simulation: Go to simulation mode
+Edit Event list filters → Select only ICMP
+Select the packets and place on PC’s
+Auto capture
+Successful
+
+
+
+
+6. Simulate a topology where 3 routers are fully connected and each router connected
+to an end device. Observe the flow of ICMP packets from one network to other using
+OSPF protocol.
+
+
+
+Step 1: Select 3 Routers (2811)
+Step 2: Click on Router0 → Config → Physical → Select WIC1T or WIC2T
+Disable the green button (Right side)
+Drag and drop the WIC 2T 2 times into the box
+Enable the green button
+Repeat the same steps for the other Routers
+Step 3: Select 3 PC’s and give the connections to Routers and PC’s
+Step 4: Click on PC0 → Desktop → IP Config → Static
+IP address: 192.168.1.1
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.1.2
+Step 5: Click on PC1 → Desktop → IP Config → Static
+IP address: 192.168.2.1
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.2.2
+Step 6: Click on PC2 → Desktop → IP Config → Static
+IP address: 192.168.3.1
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.3.2
+Step 7: [ Based on the respective fast ethernet and serial numbers in your system, provide the
+IP’s ]
+Click on Router 0 → Config → Interface
+Fast Ethernet 0/0:
+IP Address: 192.168.1.2
+Subnet Mask: 255.255.255.0
+Turn on Port status
+Serial 0/3/1:
+IP Address: 10.10.10.2
+Subnet Mask: 255.0.0.0
+Turn on Port status
+Serial 0/3/0:
+IP Address: 20.20.20.1
+Subnet Mask: 255.0.0.0
+Turn on Port status
+Repeat the same process for Router1 and Router2 (For IP’s, look at the diagram)
+Make sure all the red dots on the connection turns green
+Step 6: Click on Router 0 → CL I
+Router > enable
+Router# configure terminal
+Router(config)#router ospf 3
+Router(config-router)#network 192.168.1.0 0.0.0.255 area 0
+Router(config-router)#network 10.0.0.0 0.255.255.255 area 0
+Router(config-router)#network 20.0.0.0 0.255.255.255 area 0
+Router(config-router)#exit
+Router(config)#exit
+Click on Router1 → CLI
+Router > enable
+Router# configure terminal
+Router(config)#router ospf 3
+Router(config-router)#network 192.168.2.0 0.0.0.255 area 0
+Router(config-router)#network 20.0.0.0 0.255.255.255 area 0
+Router(config-router)#network 30.0.0.0 0.255.255.255 area 0
+Router(config-router)#exit
+Router(config)#exit
+Click on Router2 → CLI
+Router > enable
+Router# configure terminal
+Router(config)#router ospf 3
+Router(config-router)#network 192.168.3.0 0.0.0.255 area 0
+Router(config-router)#network 10.0.0.0 0.255.255.255 area 0
+Router(config-router)#network 30.0.0.0 0.255.255.255 area 0
+Router(config-router)#exit
+Router(config)#exit
+Simulation: Go to simulation mode
+Event List → Edit Filters → Select only ICMP
+Select the packets and place on PC’s
+Auto Capture
+Successful
+
+
+
+
+
+
+7. Simulate a network for browsing and understand DNS protocol.
+
+
+Step 1: Select 2 PC’s, 2 Servers and a Switch
+Step 2: Give the connections
+Step 3: Click on PC0 → Desktop → IP Config
+IP Address: 192.168.1.1
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.1681.3
+Step 4: Click on PC1 → Desktop → IP Config
+IP Address: 192.168.1.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.1681.3
+Step 5: Click on Server0 (WEB Server) → Desktop
+IP Address: 192.168.1.4
+Subnet Mask: 255.255.255.0
+Click on Server1 (DNS Server) → Desktop
+IP Address: 192.168.1.3
+Subnet Mask: 255.255.255.0
+Step 6: Click on WEB Server → Config → HTTP
+Modify the HTML code
+Step 7: Click on DNS Server → Config → DNS
+Turn on DNS Service
+Name: www.abc.com
+Add
+IP Address: 192.168.1.4 (IP Address of WEB Server)
+Step 8: Click on PC0 → Desktop → Web Browser → URL → www.abc.com → Go
